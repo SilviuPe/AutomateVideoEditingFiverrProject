@@ -18,16 +18,18 @@ class videoBulkEditor:
         # meaning when you access edited.Clips['nosound'][index]['title'] you'll get the name of the file
         # meaning when you access edited.Clips['nosound'][index]['clip'] you'll get the  of the clip object
         """
-        
+    
     def remove_sound(self):
         
-        if not len(self.videoPathList):
-        
-            for videoPath in self.videoPathList:
-                
-                clip = VideoFileClip(videoPath)
-                
-                self.videoclips_without_sound.append(clip)
+        for videoPath in self.videoPathList:
+            
+            if not len(self.videoPathList):
+            
+                for videoPath in self.videoPathList:
+                    
+                    clip = VideoFileClip(videoPath)
+                    
+                    self.videoclips_without_sound.append(clip)
 
     
     def flip_clips(self):
@@ -44,3 +46,19 @@ class videoBulkEditor:
             flippedVideo.write_videofile(f'../flipped/flipped-{video_name}')
                 
     
+    
+    
+        """
+        
+        Select from the following folders:
+        1. 23441432412
+        2. 34332423424
+        3. 23111545553        
+        4. 63441432412
+        5. 43452423424
+        6. 13111545553 
+        
+        M - for multiple files> M
+        
+        Please, select more folders (eg. '1,3,4')> 1,2,4
+        """
