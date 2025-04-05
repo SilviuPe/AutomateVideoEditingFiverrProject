@@ -47,7 +47,7 @@ class IOManagement:
         self.VideoEditor.remove_sound(pathList, writeout=True)
     
     def reverse(self, pathList):
-        pass
+        self.VideoEditor.reverse_clips(pathList)
     
     def flip(self, pathList):
         self.VideoEditor.flip_clips(pathList)
