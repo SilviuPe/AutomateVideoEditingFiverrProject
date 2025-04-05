@@ -11,7 +11,7 @@ class IOManagement:
             'reverse' : self.reverse,
             'flipped' : self.flip,
             'reverse + flipped' : self.reverse_flip,
-            'fade': self.fadeEffect
+            'fade': self.fadeEffect,
         }
         
         self.currentAction = None
@@ -54,11 +54,11 @@ class IOManagement:
         
     
     def reverse_flip(self, pathList):
-        self.removesound(pathList)
+        self.VideoEditor.reverseFlip(pathList)
         pass
     
     def fadeEffect(self, pathList):
-        self.removesound(pathList)
+        self.VideoEditor.fadeInOut(pathList)
         pass
         
         
