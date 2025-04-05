@@ -1,5 +1,9 @@
 import os
 import ffmpeg
+current_dir = os.path.dirname(os.path.abspath(__file__))
+ffmpeg_bin_path = os.path.join(current_dir, 'FFmpeg', 'bin')
+print(ffmpeg_bin_path)
+os.environ['PATH'] = ffmpeg_bin_path + os.pathsep + os.environ['PATH']
 
 
 class videoBulkEditor:
@@ -58,7 +62,7 @@ class videoBulkEditor:
                                 (
                                 ffmpeg
                                 .input(rf"{videosPath}/{videoPath}")
-                                .output(f'{videosPath}/nosounds/{videoPath}', preset="ultrafast", threads="6", an=None)
+                                .output(f'{videosPath}/nosounds/{videoPath}', preset="ultrafast", threads=f"{os.cpu_count()}", an=None)
                                 .run(overwrite_output=True)
                                 )
 
@@ -114,7 +118,7 @@ class videoBulkEditor:
                                 (
                                 ffmpeg
                                 .input(rf"{videosPath}/{videoPath}")
-                                .output(f'{videosPath}/flipped/{videoPath}', vf='hflip', preset="ultrafast", threads="6", an=None)
+                                .output(f'{videosPath}/flipped/{videoPath}', vf='hflip', preset="ultrafast", threads=f"{os.cpu_count()}", an=None)
                                 .run(overwrite_output=True)
                                 )
                     
@@ -167,7 +171,7 @@ class videoBulkEditor:
                                 (
                                 ffmpeg
                                 .input(rf"{videosPath}/{videoPath}")
-                                .output(f'{videosPath}/rf/{videoPath}', vf='reverse,hflip', preset="ultrafast", threads="6", an=None)
+                                .output(f'{videosPath}/rf/{videoPath}', vf='reverse,hflip', preset="ultrafast", threads=f"{os.cpu_count()}", an=None)
                                 .run(overwrite_output=True)
                                 )
                     
@@ -219,7 +223,7 @@ class videoBulkEditor:
                                 (
                                 ffmpeg
                                 .input(rf"{videosPath}/{videoPath}")
-                                .output(f'{videosPath}/reverted/{videoPath}', vf='reverse', preset="ultrafast", threads="6", an=None)
+                                .output(f'{videosPath}/reverted/{videoPath}', vf='reverse', preset="ultrafast", threads=f"{os.cpu_count()}", an=None)
                                 .run(overwrite_output=True)
                                 )
                     
@@ -274,7 +278,7 @@ class videoBulkEditor:
                             .input(rf"{videosPath}/{videoPath}")
                             .filter('fade', t='in', st=0, d=2)
                             .filter('fade', t='out', st=float(probe['format']['duration'])-2, d=2)
-                            .output(f'{videosPath}/fade/{videoPath}', preset="ultrafast", threads="6", an=None)
+                            .output(f'{videosPath}/fade/{videoPath}', preset="ultrafast", threads=f"{os.cpu_count()}", an=None)
                             .run(overwrite_output=True)
                             )
                 
